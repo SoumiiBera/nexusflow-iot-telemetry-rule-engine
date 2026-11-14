@@ -84,3 +84,25 @@ test("Should reject invalid telemetry input", () => {
         /Valid telemetry data is required/
     );
 });
+// Test 6: Reject invalid rule configuration
+test("Should reject invalid rule configuration", () => {
+    const invalidRule = {
+        ...rules[0],
+        operator: "!="
+    };
+
+    assert.throws(
+        () => evaluateRules(telemetry, [invalidRule]),
+        /Invalid rule configuration/
+    );
+});
+
+// Test 7: Accept valid rules after validation
+test("Should evaluate valid rules after validation", () => {
+    const validRules = [rules[0]];
+
+    const alerts = evaluateRules(telemetry, validRules);
+
+    assert.strictEqual(alerts.length, 1);
+    assert.strictEqual(alerts[0].severity, "Critical");
+});

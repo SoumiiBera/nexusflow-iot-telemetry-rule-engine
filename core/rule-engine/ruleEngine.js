@@ -1,6 +1,7 @@
 // NexusFlow - Rule Engine Manager
 
 const { evaluateRule } = require("./evaluator");
+const { validateRule } = require("./ruleValidator");
 
 /**
  * Evaluates multiple rules against incoming telemetry.
@@ -22,12 +23,20 @@ function evaluateRules(telemetry, rules) {
     const alerts = [];
 
     for (const rule of rules) {
-        const alert = evaluateRule(telemetry, rule);
+    const validation = validateRule(rule);
 
-        if (alert) {
-            alerts.push(alert);
-        }
+    if (!validation.valid) {
+        throw new Error(
+            `Invalid rule configuration: ${validation.errors.join(" ")}`
+        );
     }
+
+    const alert = evaluateRule(telemetry, rule);
+
+    if (alert) {
+        alerts.push(alert);
+    }
+}
 
     return alerts;
 }
