@@ -63,12 +63,14 @@ The main objectives of NexusFlow are:
 # ⚙️ 4. Proposed Key Features
 
 ### 4.1 Device Management
+
 - Register IoT devices.
 - Maintain device identification.
 - Monitor device information.
 - Display device statistics.
 
 ### 4.2 Telemetry Management
+
 - Receive telemetry data.
 - Validate device IDs.
 - Validate numeric sensor readings.
@@ -78,6 +80,7 @@ The main objectives of NexusFlow are:
 - Process validated telemetry.
 
 ### 4.3 Rule Engine
+
 - Create and validate rules.
 - Evaluate sensor readings.
 - Support comparison operators.
@@ -86,6 +89,7 @@ The main objectives of NexusFlow are:
 - Handle non-matching conditions.
 
 ### 4.4 Alert Management
+
 - Generate alerts based on rule evaluation.
 - Generate unique alert IDs.
 - Support Warning and Critical severity.
@@ -93,6 +97,7 @@ The main objectives of NexusFlow are:
 - Update alert status when required.
 
 ### 4.5 Dashboard
+
 The proposed dashboard will display:
 
 - Total Devices
@@ -132,8 +137,8 @@ NexusFlow follows a modular architecture.
 
 ### Proposed Data Flow
 
+```text
              IoT Devices
-                  |
                   |
                   v
           Incoming Telemetry
@@ -163,7 +168,7 @@ NexusFlow follows a modular architecture.
           |
           v
        Dashboard
-
+```
 
 ### Main System Components
 
@@ -187,24 +192,26 @@ The project responsibilities have been divided into three separate development a
 ## 7.1 Soumi Bera
 
 **Role:** Team Leader & Core System Developer  
-**Branch:** soumi-core
+**Branch:** `soumi-core`
 
 ### Assigned Responsibilities
 
 **A. Core Rule Engine**
+
 - Develop Rule Evaluation Logic.
 - Implement Rule Validation.
 - Handle comparison operators:
-  - >
-  - <
-  - ==
-  - >=
-  - <=
+  - `>`
+  - `<`
+  - `==`
+  - `>=`
+  - `<=`
 - Implement device ID-based rule evaluation.
 - Handle disabled rules.
 - Handle non-matching conditions.
 
 **B. Alert Manager**
+
 - Implement alert creation.
 - Generate unique UUID-based alert IDs.
 - Support Warning and Critical severity.
@@ -215,6 +222,7 @@ The project responsibilities have been divided into three separate development a
 - Implement alert status updates.
 
 **C. Telemetry Validation**
+
 - Validate telemetry objects.
 - Validate device IDs.
 - Validate numeric sensor readings.
@@ -223,12 +231,14 @@ The project responsibilities have been divided into three separate development a
 - Handle validation errors.
 
 **D. Telemetry Processing**
+
 - Develop telemetry normalization.
 - Process incoming telemetry data.
 - Connect telemetry processing with the Rule Engine.
 - Ensure validated telemetry can be evaluated.
 
 **E. Main Backend Development**
+
 - Manage MongoDB integration.
 - Develop database models.
 - Develop Device APIs.
@@ -239,6 +249,7 @@ The project responsibilities have been divided into three separate development a
 - Implement error handling.
 
 **F. Integration and Testing**
+
 - Integrate Rule Engine and Telemetry Processing.
 - Integrate Alert Manager.
 - Perform API testing.
@@ -248,6 +259,7 @@ The project responsibilities have been divided into three separate development a
 - Manage Pull Requests and final integration.
 
 **G. Team Management**
+
 - Coordinate team members.
 - Monitor development progress.
 - Maintain the main README.
@@ -259,7 +271,7 @@ The project responsibilities have been divided into three separate development a
 ## 7.2 Shreya
 
 **Role:** Frontend Developer  
-**Branch:** shreya-frontend
+**Branch:** `shreya-frontend`
 
 ### Assigned Responsibilities
 
@@ -289,37 +301,40 @@ The following tasks are not included in the current assignment:
 ## 7.3 Chandra
 
 **Role:** Backend Developer  
-**Branch:** chandra-backend
+**Branch:** `chandra-backend`
 
 ### Assigned Responsibilities
 
 1. Create the backend folder.
 2. Initialize the Node.js project.
-3. Create server.js.
-4. Create package.json.
+3. Create `server.js`.
+4. Create `package.json`.
 5. Install Express.js.
 6. Configure a basic Express server on port 5000.
 7. Create a basic GET route.
 8. Display the following welcome message:
 
+```text
 Welcome to NexusFlow Backend!
-
+```
 
 9. Test the backend server through the browser.
 
-10. Add the following start script to package.json:
+10. Add the following start script to `package.json`:
 
+```json
 "scripts": {
   "start": "node server.js"
 }
+```
 
-
-11. Ensure the backend server can be started using the npm start command.
+11. Ensure the backend server can be started using the `npm start` command.
 
 **Expected URL:**
 
+```text
 http://localhost:5000
-
+```
 
 **Scope Limitation:**
 
@@ -332,13 +347,14 @@ The following tasks are not included in the current assignment:
 - Rule Engine Development.
 - Alert Manager Development.
 - Complex Backend Development.
-  
+
 ---
-  
+
 # 📁 8. Project Folder Structure
 
 The following is the planned overall project structure.
 
+```text
 nexusflow-iot-telemetry-rule-engine/
 │
 ├── .github/
@@ -461,9 +477,9 @@ nexusflow-iot-telemetry-rule-engine/
 ├── CONTRIBUTING.md
 ├── ROADMAP.md
 └── TEAM_TASKS.md
+```
 
-
-**Important:** This is the planned overall structure, not a claim that every listed file already exists. Existing modules should be maintained, and new files should be created only when their implementation begins.
+**Important:** This is the planned overall project structure, not a claim that every listed file already exists. Existing modules should be maintained, and new files should be created only when their implementation begins.
 
 ---
 
@@ -487,8 +503,9 @@ The existing Core Rule Engine and Telemetry Validator have automated tests.
 
 Run the following command from the project root:
 
+```bash
 node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
-
+```
 
 ### Testing Areas
 
@@ -512,43 +529,44 @@ The project uses Git and GitHub for version control and team collaboration.
 
 | Branch | Responsible Member | Purpose |
 |---|---|---|
-| main | Soumi Bera | Stable integrated code |
-| soumi-core | Soumi Bera | Core System Development |
-| shreya-frontend | Shreya | Frontend Development |
-| chandra-backend | Chandra | Basic Backend Setup |
+| `main` | Soumi Bera | Stable integrated code |
+| `soumi-core` | Soumi Bera | Core System Development |
+| `shreya-frontend` | Shreya | Frontend Development |
+| `chandra-backend` | Chandra | Basic Backend Setup |
 
 ### GitHub Workflow
 
+```text
            soumi-core       shreya-frontend       chandra-backend
-     |                   |                    |
-     v                   v                    v
- Development         Development          Development
-     |                   |                    |
-     v                   v                    v
- Testing             Testing              Testing
-     |                   |                    |
-     v                   v                    v
- Pull Request        Pull Request         Pull Request
-     |                   |                    |
-     +-------------------+--------------------+
-                         |
-                         v
-                Team Leader Review
-                         |
-                         v
-                    main Branch
-
+               |                   |                    |
+               v                   v                    v
+          Development         Development          Development
+               |                   |                    |
+               v                   v                    v
+             Testing             Testing              Testing
+               |                   |                    |
+               v                   v                    v
+          Pull Request        Pull Request         Pull Request
+               |                   |                    |
+               +-------------------+--------------------+
+                                   |
+                                   v
+                          Team Leader Review
+                                   |
+                                   v
+                              main Branch
+```
 
 ### Collaboration Rules
 
 1. Every member must work on their assigned branch.
-2. Do not directly push changes to main.
+2. Do not directly push changes to `main`.
 3. Commit meaningful and understandable changes.
 4. Push completed work regularly.
 5. Create a Pull Request after completing assigned tasks.
 6. The Team Leader will review Pull Requests.
-7. Approved changes will be merged into main.
-8. Keep the main branch stable.
+7. Approved changes will be merged into `main`.
+8. Keep the `main` branch stable.
 
 ---
 
@@ -558,13 +576,13 @@ Each team member is responsible for maintaining their individual work documentat
 
 | File | Responsible Member |
 |---|---|
-| README.md | Soumi Bera |
-| docs/SOUMI_WORK.md | Soumi Bera |
-| docs/SHREYA_WORK.md | Shreya |
-| docs/CHANDRA_WORK.md | Chandra |
-| CONTRIBUTING.md | Soumi Bera |
-| ROADMAP.md | Soumi Bera |
-| TEAM_TASKS.md | Soumi Bera |
+| `README.md` | Soumi Bera |
+| `docs/SOUMI_WORK.md` | Soumi Bera |
+| `docs/SHREYA_WORK.md` | Shreya |
+| `docs/CHANDRA_WORK.md` | Chandra |
+| `CONTRIBUTING.md` | Soumi Bera |
+| `ROADMAP.md` | Soumi Bera |
+| `TEAM_TASKS.md` | Soumi Bera |
 
 ### Documentation Guidelines
 
@@ -590,37 +608,43 @@ Install the following tools before starting development:
 
 ### Clone the Repository
 
+```bash
 git clone https://github.com/SoumiiBera/nexusflow-iot-telemetry-rule-engine.git
-
+```
 
 Move into the project directory:
 
+```bash
 cd nexusflow-iot-telemetry-rule-engine
-
+```
 
 ### Switch to Your Assigned Branch
 
 First, fetch all remote branches:
 
+```bash
 git fetch origin
+```
 
-
-**Note:** The git switch --track origin/<branch-name> command is used when creating a local tracking branch for the first time. If the local branch already exists, use git switch <branch-name> instead.
+**Note:** The `git switch --track origin/<branch-name>` command is used when creating a local tracking branch for the first time. If the local branch already exists, use `git switch <branch-name>` instead.
 
 For Soumi:
 
+```bash
 git switch --track origin/soumi-core
-
+```
 
 For Shreya:
 
+```bash
 git switch --track origin/shreya-frontend
-
+```
 
 For Chandra:
 
+```bash
 git switch --track origin/chandra-backend
-
+```
 
 Each team member should switch to their assigned branch before starting development.
 
@@ -628,16 +652,19 @@ Each team member should switch to their assigned branch before starting developm
 
 From the project root:
 
+```bash
 node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
-
+```
 
 ### Run Frontend
 
 After the frontend project has been initialized:
 
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
 **Note:** Keep the frontend running in one terminal. Open a separate terminal from the project root to run the backend.
 
@@ -645,24 +672,27 @@ npm run dev
 
 After the backend project has been initialized:
 
+```bash
 cd backend
 npm install
 npm start
+```
 
+Before running the backend, make sure `backend/package.json` contains the following start script:
 
-Before running the backend, make sure backend/package.json contains the following start script:
-
+```json
 "scripts": {
   "start": "node server.js"
 }
+```
 
-
-If the start script is not available, add it to the existing package.json file.
+If the start script is not available, add it to the existing `package.json` file.
 
 The backend server will run at:
 
+```text
 http://localhost:5000
-
+```
 
 **Note:** The backend must be configured to use port 5000.
 
@@ -700,14 +730,17 @@ After individual development is completed, the modules will be integrated.
 ### Integration Responsibilities
 
 **Frontend – Shreya**
+
 - Provide the basic dashboard interface.
 - Display the three assigned summary cards.
 
 **Basic Backend – Chandra**
+
 - Provide the initial Express server setup.
 - Verify the server response.
 
 **Core System & Main Backend – Soumi**
+
 - Integrate telemetry processing.
 - Connect the Rule Engine.
 - Integrate Alert Manager.
@@ -794,28 +827,33 @@ Team members should follow the assigned development responsibilities.
 6. Push your branch to GitHub.
 7. Create a Pull Request.
 8. Wait for Team Leader review.
-9. Merge approved changes into main.
+9. Merge approved changes into `main`.
 
 ### Example Commit Messages
 
+For Shreya:
+
+```bash
 git add .
 git commit -m "Implemented assigned frontend components"
 git push origin shreya-frontend
-
+```
 
 For Chandra:
 
+```bash
 git add .
 git commit -m "Added basic Express backend server"
 git push origin chandra-backend
-
+```
 
 For Soumi:
 
+```bash
 git add .
 git commit -m "Updated core telemetry processing"
 git push origin soumi-core
-
+```
 
 ---
 
@@ -848,5 +886,3 @@ By dividing responsibilities among team members and following a modular developm
 The team will continue improving the system through development, testing, collaboration and documentation.
 
 **Developed as part of the Infotact Solutions Internship Project.**
-
----
