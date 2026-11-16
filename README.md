@@ -18,11 +18,11 @@
 
 # 📌 1. Project Overview
 
-NexusFlow is a proposed Visual IoT Telemetry and Rule Engine designed to manage IoT devices, process incoming sensor data, evaluate predefined rules and generate alerts based on device conditions.
+NexusFlow is a proposed Visual IoT Telemetry and Rule Engine designed to manage IoT devices, process incoming sensor data, evaluate predefined rules, and generate alerts based on device conditions.
 
-The system aims to provide a centralized platform where device telemetry can be validated, processed and monitored through a structured backend system and a visual dashboard.
+The system aims to provide a centralized platform where device telemetry can be validated, processed, and monitored through a structured backend system and a visual dashboard.
 
-The project focuses on developing a modular and scalable architecture that separates telemetry processing, rule evaluation, alert management, backend services and frontend visualization.
+The project focuses on developing a modular and scalable architecture that separates telemetry processing, rule evaluation, alert management, backend services, and frontend visualization.
 
 ---
 
@@ -62,14 +62,14 @@ The main objectives of NexusFlow are:
 
 # ⚙️ 4. Proposed Key Features
 
-### 4.1 Device Management
+## 4.1 Device Management
 
 - Register IoT devices.
 - Maintain device identification.
 - Monitor device information.
 - Display device statistics.
 
-### 4.2 Telemetry Management
+## 4.2 Telemetry Management
 
 - Receive telemetry data.
 - Validate device IDs.
@@ -79,7 +79,7 @@ The main objectives of NexusFlow are:
 - Normalize telemetry data.
 - Process validated telemetry.
 
-### 4.3 Rule Engine
+## 4.3 Rule Engine
 
 - Create and validate rules.
 - Evaluate sensor readings.
@@ -88,7 +88,7 @@ The main objectives of NexusFlow are:
 - Handle disabled rules.
 - Handle non-matching conditions.
 
-### 4.4 Alert Management
+## 4.4 Alert Management
 
 - Generate alerts based on rule evaluation.
 - Generate unique alert IDs.
@@ -96,7 +96,7 @@ The main objectives of NexusFlow are:
 - Manage alert statuses.
 - Update alert status when required.
 
-### 4.5 Dashboard
+## 4.5 Dashboard
 
 The proposed dashboard will display:
 
@@ -135,7 +135,7 @@ The following technologies are selected or proposed for the project.
 
 NexusFlow follows a modular architecture.
 
-### Proposed Data Flow
+## Proposed Data Flow
 
 ```text
              IoT Devices
@@ -170,7 +170,7 @@ NexusFlow follows a modular architecture.
        Dashboard
 ```
 
-### Main System Components
+## Main System Components
 
 | Component | Responsibility |
 |---|---|
@@ -180,7 +180,7 @@ NexusFlow follows a modular architecture.
 | Rule Engine | Evaluates predefined conditions |
 | Alert Manager | Creates and manages alerts |
 | Backend API | Handles application requests |
-| Database | Stores devices, rules, telemetry and alerts |
+| Database | Stores devices, rules, telemetry, and alerts |
 | Frontend | Displays dashboard information |
 
 ---
@@ -198,8 +198,8 @@ The project responsibilities have been divided into three separate development a
 
 **A. Core Rule Engine**
 
-- Develop Rule Evaluation Logic.
-- Implement Rule Validation.
+- Develop rule evaluation logic.
+- Implement rule validation.
 - Handle comparison operators:
   - `>`
   - `<`
@@ -266,8 +266,6 @@ The project responsibilities have been divided into three separate development a
 - Manage project documentation.
 - Review and merge approved Pull Requests.
 
----
-
 ## 7.2 Shreya
 
 **Role:** Frontend Developer  
@@ -286,7 +284,7 @@ The project responsibilities have been divided into three separate development a
    - Total Alerts
 7. Complete basic UI layout and CSS styling.
 
-**Scope Limitation:**
+**Scope Limitation**
 
 The following tasks are not included in the current assignment:
 
@@ -295,8 +293,6 @@ The following tasks are not included in the current assignment:
 - Advanced Dashboard Functionality.
 - Complex Frontend Features.
 - Backend Development.
-
----
 
 ## 7.3 Chandra
 
@@ -319,7 +315,6 @@ Welcome to NexusFlow Backend!
 ```
 
 9. Test the backend server through the browser.
-
 10. Add the following start script to `package.json`:
 
 ```json
@@ -330,13 +325,13 @@ Welcome to NexusFlow Backend!
 
 11. Ensure the backend server can be started using the `npm start` command.
 
-**Expected URL:**
+**Expected URL**
 
 ```text
 http://localhost:5000
 ```
 
-**Scope Limitation:**
+**Scope Limitation**
 
 The following tasks are not included in the current assignment:
 
@@ -363,13 +358,11 @@ nexusflow-iot-telemetry-rule-engine/
 │       └── task.md
 │
 ├── core/
-│   │
 │   ├── rule-engine/
 │   │   ├── evaluator.js
 │   │   ├── ruleEngine.js
 │   │   ├── alertManager.js
 │   │   ├── ruleValidator.js
-│   │   │
 │   │   └── tests/
 │   │       ├── evaluator.test.js
 │   │       ├── ruleEngine.test.js
@@ -380,7 +373,6 @@ nexusflow-iot-telemetry-rule-engine/
 │   │   ├── telemetryValidator.js
 │   │   ├── telemetryNormalizer.js
 │   │   ├── telemetryProcessor.js
-│   │   │
 │   │   └── tests/
 │   │       ├── telemetryValidator.test.js
 │   │       ├── telemetryNormalizer.test.js
@@ -393,49 +385,40 @@ nexusflow-iot-telemetry-rule-engine/
 │           └── integration.test.js
 │
 ├── backend/
-│   │
 │   ├── config/
 │   │   ├── db.js
 │   │   └── environment.js
-│   │
 │   ├── models/
 │   │   ├── Device.js
 │   │   ├── Telemetry.js
 │   │   ├── Rule.js
 │   │   └── Alert.js
-│   │
 │   ├── controllers/
 │   │   ├── deviceController.js
 │   │   ├── telemetryController.js
 │   │   ├── ruleController.js
 │   │   └── alertController.js
-│   │
 │   ├── routes/
 │   │   ├── deviceRoutes.js
 │   │   ├── telemetryRoutes.js
 │   │   ├── ruleRoutes.js
 │   │   └── alertRoutes.js
-│   │
 │   ├── services/
 │   │   ├── deviceService.js
 │   │   ├── telemetryService.js
 │   │   ├── ruleService.js
 │   │   └── alertService.js
-│   │
 │   ├── middleware/
 │   │   ├── errorHandler.js
 │   │   └── notFound.js
-│   │
 │   ├── utils/
 │   │   ├── responseHandler.js
 │   │   └── logger.js
-│   │
 │   ├── tests/
 │   │   ├── device.test.js
 │   │   ├── telemetry.test.js
 │   │   ├── rule.test.js
 │   │   └── alert.test.js
-│   │
 │   ├── server.js
 │   └── package.json
 │
@@ -446,14 +429,11 @@ nexusflow-iot-telemetry-rule-engine/
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── Sidebar.jsx
 │   │   │   └── DashboardCard.jsx
-│   │   │
 │   │   ├── pages/
 │   │   │   └── Dashboard.jsx
-│   │   │
 │   │   ├── App.jsx
 │   │   ├── main.jsx
 │   │   └── index.css
-│   │
 │   ├── index.html
 │   ├── package.json
 │   └── vite.config.js
@@ -487,11 +467,11 @@ nexusflow-iot-telemetry-rule-engine/
 
 Testing is an important part of the NexusFlow development process.
 
-### Current Core Testing
+## Current Core Testing
 
 The existing Core Rule Engine and Telemetry Validator have automated tests.
 
-**Latest Recorded Test Result:**
+**Latest Recorded Test Result**
 
 | Test Information | Result |
 |---|---:|
@@ -499,7 +479,7 @@ The existing Core Rule Engine and Telemetry Validator have automated tests.
 | Passed | 37 |
 | Failed | 0 |
 
-### Test Command
+## Test Command
 
 Run the following command from the project root:
 
@@ -507,7 +487,7 @@ Run the following command from the project root:
 node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
 ```
 
-### Testing Areas
+## Testing Areas
 
 - Rule Evaluation Testing.
 - Rule Validation Testing.
@@ -525,7 +505,7 @@ node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
 
 The project uses Git and GitHub for version control and team collaboration.
 
-### Development Branches
+## Development Branches
 
 | Branch | Responsible Member | Purpose |
 |---|---|---|
@@ -534,30 +514,30 @@ The project uses Git and GitHub for version control and team collaboration.
 | `shreya-frontend` | Shreya | Frontend Development |
 | `chandra-backend` | Chandra | Basic Backend Setup |
 
-### GitHub Workflow
+## GitHub Workflow
 
 ```text
-           soumi-core       shreya-frontend       chandra-backend
-               |                   |                    |
-               v                   v                    v
-          Development         Development          Development
-               |                   |                    |
-               v                   v                    v
-             Testing             Testing              Testing
-               |                   |                    |
-               v                   v                    v
-          Pull Request        Pull Request         Pull Request
-               |                   |                    |
-               +-------------------+--------------------+
-                                   |
-                                   v
-                          Team Leader Review
-                                   |
-                                   v
-                              main Branch
+       soumi-core       shreya-frontend       chandra-backend
+           |                    |                    |
+           v                    v                    v
+      Development          Development          Development
+           |                    |                    |
+           v                    v                    v
+         Testing              Testing              Testing
+           |                    |                    |
+           v                    v                    v
+      Pull Request         Pull Request         Pull Request
+           |                    |                    |
+           +--------------------+--------------------+
+                                |
+                                v
+                       Team Leader Review
+                                |
+                                v
+                           main Branch
 ```
 
-### Collaboration Rules
+## Collaboration Rules
 
 1. Every member must work on their assigned branch.
 2. Do not directly push changes to `main`.
@@ -584,7 +564,7 @@ Each team member is responsible for maintaining their individual work documentat
 | `ROADMAP.md` | Soumi Bera |
 | `TEAM_TASKS.md` | Soumi Bera |
 
-### Documentation Guidelines
+## Documentation Guidelines
 
 - Document only the work actually completed.
 - Mention the files and modules created.
@@ -596,7 +576,7 @@ Each team member is responsible for maintaining their individual work documentat
 
 # 🚀 12. Getting Started
 
-### Prerequisites
+## Prerequisites
 
 Install the following tools before starting development:
 
@@ -606,7 +586,7 @@ Install the following tools before starting development:
 - Visual Studio Code
 - MongoDB (required when database integration begins)
 
-### Clone the Repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/SoumiiBera/nexusflow-iot-telemetry-rule-engine.git
@@ -618,7 +598,7 @@ Move into the project directory:
 cd nexusflow-iot-telemetry-rule-engine
 ```
 
-### Switch to Your Assigned Branch
+## Switch to Your Assigned Branch
 
 First, fetch all remote branches:
 
@@ -631,7 +611,7 @@ git fetch origin
 For Soumi:
 
 ```bash
-git switch --track origin/soumi-core
+git switch soumi-core
 ```
 
 For Shreya:
@@ -648,7 +628,7 @@ git switch --track origin/chandra-backend
 
 Each team member should switch to their assigned branch before starting development.
 
-### Run Core Tests
+## Run Core Tests
 
 From the project root:
 
@@ -656,7 +636,7 @@ From the project root:
 node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
 ```
 
-### Run Frontend
+## Run Frontend
 
 After the frontend project has been initialized:
 
@@ -668,7 +648,7 @@ npm run dev
 
 **Note:** Keep the frontend running in one terminal. Open a separate terminal from the project root to run the backend.
 
-### Run Backend
+## Run Backend
 
 After the backend project has been initialized:
 
@@ -727,7 +707,7 @@ http://localhost:5000
 
 After individual development is completed, the modules will be integrated.
 
-### Integration Responsibilities
+## Integration Responsibilities
 
 **Frontend – Shreya**
 
@@ -817,7 +797,7 @@ These features may be considered after the current project scope is completed.
 
 Team members should follow the assigned development responsibilities.
 
-### Contribution Process
+## Contribution Process
 
 1. Switch to your assigned branch.
 2. Complete your assigned task.
@@ -829,12 +809,12 @@ Team members should follow the assigned development responsibilities.
 8. Wait for Team Leader review.
 9. Merge approved changes into `main`.
 
-### Example Commit Messages
+## Example Commit Messages
 
 For Shreya:
 
 ```bash
-git add .
+git add <specific-files>
 git commit -m "Implemented assigned frontend components"
 git push origin shreya-frontend
 ```
@@ -842,7 +822,7 @@ git push origin shreya-frontend
 For Chandra:
 
 ```bash
-git add .
+git add <specific-files>
 git commit -m "Added basic Express backend server"
 git push origin chandra-backend
 ```
@@ -850,10 +830,12 @@ git push origin chandra-backend
 For Soumi:
 
 ```bash
-git add .
+git add <specific-files>
 git commit -m "Updated core telemetry processing"
 git push origin soumi-core
 ```
+
+Replace `<specific-files>` with the actual files changed. Avoid `git add .` when unrelated or unfinished files may be present.
 
 ---
 
@@ -879,10 +861,10 @@ git push origin soumi-core
 
 # ⭐ 21. Conclusion
 
-NexusFlow aims to provide a structured approach to IoT telemetry management through data validation, rule evaluation, alert generation and visual monitoring.
+NexusFlow aims to provide a structured approach to IoT telemetry management through data validation, rule evaluation, alert generation, and visual monitoring.
 
 By dividing responsibilities among team members and following a modular development approach, the project aims to achieve a maintainable and integrated IoT telemetry system.
 
-The team will continue improving the system through development, testing, collaboration and documentation.
+The team will continue improving the system through development, testing, collaboration, and documentation.
 
 **Developed as part of the Infotact Solutions Internship Project.**
