@@ -1,0 +1,26 @@
+{
+  "name": "nexusflow-backend",
+  "version": "1.0.0",
+  "description": "NexusFlow IoT Telemetry and Rule Engine Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js tests/*.test.js"
+  },
+  "keywords": [
+    "iot",
+    "telemetry",
+    "rule-engine",
+    "backend"
+  ],
+  "author": "Soumi Bera",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.2"
+  }
+}
