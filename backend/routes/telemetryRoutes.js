@@ -3,9 +3,15 @@
 const express = require("express");
 const router = express.Router();
 
-const { ingestTelemetry } = require("../controllers/telemetryController");
+const {
+    ingestTelemetry,
+    getTelemetryHistory
+} = require("../controllers/telemetryController");
 
-// Telemetry Ingestion API
+// POST: Telemetry Ingestion
 router.post("/", ingestTelemetry);
+
+// GET: Telemetry History
+router.get("/", getTelemetryHistory);
 
 module.exports = router;
