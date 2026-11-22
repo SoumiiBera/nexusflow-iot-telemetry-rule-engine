@@ -4,6 +4,7 @@ const { processTelemetry } = require("../core/telemetry/telemetryProcessor");
 const Telemetry = require("../models/Telemetry");
 const Alert = require("../models/Alert");
 const Rule = require("../models/Rule");
+const Device = require("../models/Device");
 
 // POST: Ingest telemetry and save generated alerts
 const ingestTelemetry = async (req, res) => {
@@ -29,6 +30,16 @@ const ingestTelemetry = async (req, res) => {
 
         // Save telemetry
         const savedTelemetry = await Telemetry.create(result.data);
+
+        // Update lastSeen for the registered device
+        await Device.updateOne(
+            { deviceId: savedTelemetry.deviceId },
+            {
+                $max: {
+                    lastSeen: savedTelemetry.timestamp
+                }
+            }
+        );
 
         // Save generated alerts
         if (result.alerts.length > 0) {

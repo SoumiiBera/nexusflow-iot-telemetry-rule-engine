@@ -4,12 +4,14 @@ const { test, before, after } = require("node:test");
 const assert = require("node:assert");
 const request = require("supertest");
 
+
 const app = require("../server");
 const mongoose = require("mongoose");
 const connectDB = require("../config/database");
 const Telemetry = require("../models/Telemetry");
 const Alert = require("../models/Alert");
 const Rule = require("../models/Rule");
+const Device = require("../models/Device");
 
 // Connect to MongoDB before running tests
 before(async () => {
@@ -25,6 +27,10 @@ after(async () => {
     await Alert.deleteMany({
     deviceId: /^TEST_DEVICE_/
 });
+
+    await Device.deleteMany({
+        deviceId: /^TEST_DEVICE_/
+    });
 
 await Rule.deleteMany({
     deviceId: {
@@ -57,7 +63,61 @@ test("Should process valid telemetry successfully", async () => {
     );
 });
 
-// Test 2: Invalid telemetry
+// Test 2: Update device lastSeen after telemetry ingestion
+test("Should update registered device lastSeen when telemetry is received", async () => {
+    const deviceId = "TEST_DEVICE_LASTSEEN_001";
+
+    await Device.create({
+        deviceId,
+        name: "Last Seen Test Device"
+    });
+
+    const latestTimestamp = new Date("2026-11-22T08:00:00.000Z");
+
+    // Send telemetry with a timestamp
+    const response = await request(app)
+        .post("/api/telemetry")
+        .send({
+            deviceId,
+            temperature: 35,
+            humidity: 60,
+            timestamp: latestTimestamp.toISOString()
+        });
+
+    assert.strictEqual(response.status, 200);
+
+    let savedDevice = await Device.findOne({ deviceId });
+
+    assert.ok(savedDevice.lastSeen);
+    assert.strictEqual(
+        savedDevice.lastSeen.toISOString(),
+        latestTimestamp.toISOString()
+    );
+
+    // Send older telemetry
+    const olderTimestamp = new Date("2026-11-21T08:00:00.000Z");
+
+    const olderResponse = await request(app)
+        .post("/api/telemetry")
+        .send({
+            deviceId,
+            temperature: 30,
+            humidity: 55,
+            timestamp: olderTimestamp.toISOString()
+        });
+
+    assert.strictEqual(olderResponse.status, 200);
+
+    savedDevice = await Device.findOne({ deviceId });
+
+    // lastSeen should not move backwards
+    assert.strictEqual(
+        savedDevice.lastSeen.toISOString(),
+        latestTimestamp.toISOString()
+    );
+});
+
+// Test 3: Invalid telemetry
 test("Should reject invalid telemetry", async () => {
     const response = await request(app)
         .post("/api/telemetry")
@@ -75,7 +135,7 @@ test("Should reject invalid telemetry", async () => {
     );
 });
 
-// Test 3: Trigger alerts from database rules
+// Test 4: Trigger alerts from database rules
 test("Should generate alerts when database rules are triggered", async () => {
 
     // Create rules in MongoDB
@@ -118,9 +178,15 @@ test("Should generate alerts when database rules are triggered", async () => {
     assert.strictEqual(response.body.alertCount, 2);
     assert.strictEqual(response.body.alerts.length, 2);
 
-    assert.strictEqual(response.body.alerts[0].severity, "Critical");
-    assert.strictEqual(response.body.alerts[1].severity, "Warning");
+    // Verify both expected alert severities regardless of database order
+const alertSeverities = response.body.alerts
+    .map(alert => alert.severity)
+    .sort();
 
+assert.deepStrictEqual(
+    alertSeverities,
+    ["Critical", "Warning"]
+);
     // Verify alerts are saved in MongoDB
     const savedAlerts = await Alert.find({
         deviceId: "TEST_DEVICE_001"
@@ -135,7 +201,7 @@ test("Should generate alerts when database rules are triggered", async () => {
     assert.strictEqual(savedAlerts[1].status, "Active");
 });
 
-// Test 4: No rules triggered
+// Test 5: No rules triggered
 test("Should return empty alerts when no rules are triggered", async () => {
 
     // Create a rule in MongoDB
@@ -167,7 +233,7 @@ test("Should return empty alerts when no rules are triggered", async () => {
     assert.strictEqual(response.body.alerts.length, 0);
 });
 
-// Test 5: Disabled rules should not generate alerts
+// Test 6: Disabled rules should not generate alerts
 test("Should not generate alerts from disabled database rules", async () => {
 
     // Create a disabled rule in MongoDB
@@ -199,7 +265,7 @@ test("Should not generate alerts from disabled database rules", async () => {
     assert.strictEqual(response.body.alerts.length, 0);
 });
 
-// Test 6: Retrieve telemetry history
+// Test 7: Retrieve telemetry history
 test("Should retrieve telemetry history successfully", async () => {
     const response = await request(app)
         .get("/api/telemetry");
@@ -209,7 +275,7 @@ test("Should retrieve telemetry history successfully", async () => {
     assert.ok(Array.isArray(response.body.data));
 });
 
-// Test 7: Filter telemetry by device ID
+// Test 8: Filter telemetry by device ID
 test("Should filter telemetry history by device ID", async () => {
     const response = await request(app)
         .get("/api/telemetry?deviceId=TEST_DEVICE_001");
