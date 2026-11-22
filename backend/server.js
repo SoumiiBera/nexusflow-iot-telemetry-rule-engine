@@ -6,7 +6,9 @@ const express = require("express");
 const telemetryRoutes = require("./routes/telemetryRoutes");
 const alertRoutes = require("./routes/alertRoutes");
 const ruleRoutes = require("./routes/ruleRoutes");
+const deviceRoutes = require("./routes/deviceRoutes");
 const connectDB = require("./config/database");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,11 +28,17 @@ app.get("/health", (req, res) => {
 // Telemetry API Routes
 app.use("/api/telemetry", telemetryRoutes);
 
+// Device Management API Routes
+app.use("/api/devices", deviceRoutes);
+
 // Alert API Routes
 app.use("/api/alerts", alertRoutes);
 
 // Rule Management API Routes
 app.use("/api/rules", ruleRoutes);
+
+// Dashboard Summary API Routes
+app.use("/api/dashboard", dashboardRoutes);
 
 // Start Server only when this file is executed directly
 if (require.main === module) {
