@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js tests/*.test.js"
+    "test": "node --test --test-concurrency=1 core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js tests/*.test.js"
   },
   "keywords": [
     "iot",
