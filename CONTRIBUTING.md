@@ -1,33 +1,94 @@
 # Contributing to NexusFlow
 
-## Branch naming
-Use one of:
+## Project Development
+
+NexusFlow is maintained as an individual development project by Soumi Bera.
+
+This document defines the development standards and guidelines followed throughout the project.
+
+## Branch Naming
+
+Use descriptive branch names based on the type of work:
+
 - `feature/<short-name>`
 - `fix/<short-name>`
 - `docs/<short-name>`
+- `test/<short-name>`
 
 Examples:
+
 - `feature/device-dashboard`
 - `feature/telemetry-api`
 - `feature/rule-engine`
+- `fix/telemetry-validation`
+- `docs/update-readme`
 
-## Commit messages
-Use concise messages:
+## Commit Messages
+
+Use clear and concise commit messages.
+
+Recommended prefixes:
+
+- `feat:` New features.
+- `fix:` Bug fixes.
+- `docs:` Documentation updates.
+- `test:` Test-related changes.
+- `refactor:` Code improvements.
+- `style:` UI and formatting changes.
+- `chore:` Maintenance tasks.
+
+Examples:
+
 - `feat: add device status endpoint`
 - `fix: validate telemetry payload`
-- `docs: update setup instructions`
+- `docs: update project roadmap`
 - `test: add rule engine test cases`
+- `style: improve dashboard layout`
 
-## Pull request checklist
-- [ ] PR explains what changed and why.
-- [ ] Linked issue/task is included.
-- [ ] Tests or manual verification steps are included.
-- [ ] Screenshots are added for UI changes.
-- [ ] No secrets, `.env` files, or personal data are included.
-- [ ] Documentation is updated where needed.
+## Code Quality Guidelines
 
-## Collaboration rules
-- Do not push directly to `main`.
-- Keep PRs focused and reasonably small.
-- Ask before changing shared API contracts or database schemas.
-- Resolve review comments before merging.
+- Keep code readable and maintainable.
+- Use meaningful variable and function names.
+- Follow a consistent project structure.
+- Validate incoming API requests.
+- Handle errors appropriately.
+- Avoid unnecessary code duplication.
+- Keep frontend and backend responsibilities separate.
+
+## Testing Guidelines
+
+Before considering a feature complete:
+
+- [ ] Run relevant backend tests.
+- [ ] Check frontend lint.
+- [ ] Verify frontend production build.
+- [ ] Test the related API endpoints.
+- [ ] Verify the feature manually.
+- [ ] Check for unexpected errors.
+
+## Security Guidelines
+
+- Never commit `.env` files or database credentials.
+- Never expose API secrets or sensitive configuration.
+- Validate incoming data.
+- Avoid storing unnecessary personal information.
+- Keep sensitive configuration in environment variables.
+
+## Documentation Guidelines
+
+- Update README.md when project setup or major features change.
+- Update API documentation when endpoints change.
+- Update ROADMAP.md when development progress changes.
+- Keep the development checklist updated.
+
+## Development Standards
+
+The project follows a structured development approach focused on:
+
+- Maintainability
+- Reliability
+- Data validation
+- Scalable architecture
+- Secure database connectivity
+- Consistent API design
+- User-friendly interface

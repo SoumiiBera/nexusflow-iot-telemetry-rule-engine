@@ -1,24 +1,24 @@
 # NexusFlow – Frontend
 
-NexusFlow is a Visual IoT Telemetry & Rule Engine project designed to monitor IoT devices, visualize telemetry data, manage rules, and track automatically generated alerts.
+The frontend of NexusFlow is a web-based dashboard for monitoring IoT devices, viewing telemetry records, managing monitoring rules, and handling alerts.
 
-This folder contains the frontend application built using React.js and Vite.
-
-## Tech Stack
+## Technology Stack
 
 - React.js
 - Vite
 - JavaScript
 - CSS
-- Fetch API
+- ESLint
 
-## Features
+## Application Pages
 
-- **Dashboard:** Displays total devices, active devices, and total alerts.
-- **Device Management:** View registered devices and register new devices.
-- **Telemetry Monitoring:** View incoming IoT telemetry data.
-- **Rule Management:** Create and manage telemetry monitoring rules.
-- **Alert Management:** View generated alerts, acknowledge them, and resolve them.
+| Page | Description |
+|---|---|
+| Dashboard | Displays device and monitoring summaries. |
+| Devices | Displays registered IoT devices and device information. |
+| Telemetry | Displays telemetry records and sensor readings. |
+| Rules | Provides an interface for managing monitoring rules. |
+| Alerts | Displays alerts and supports status updates. |
 
 ## Project Structure
 
@@ -26,14 +26,12 @@ This folder contains the frontend application built using React.js and Vite.
 frontend/
 ├── public/
 ├── src/
-│   ├── assets/
 │   ├── components/
 │   ├── pages/
 │   ├── services/
 │   ├── App.jsx
 │   ├── App.css
-│   ├── index.css
-│   └── main.jsx
+│   └── index.css
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -43,49 +41,61 @@ frontend/
 
 - Node.js
 - npm
-- NexusFlow backend running on port 5000
+- NexusFlow backend running locally
 
 ## Installation
 
-From the project root:
+Open a terminal inside the `frontend` directory.
+
+Install dependencies:
 
 ```bash
-cd frontend
 npm install
 ```
 
-## Run Development Server
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open the application at:
+The Vite development server normally runs at:
 
 ```text
-http://localhost:5173/
+http://localhost:5173
 ```
 
-## Build for Production
+## Available Scripts
 
-```bash
-npm run build
-```
+| Command | Description |
+|---|---|
+| `npm run dev` | Starts the development server. |
+| `npm run build` | Creates a production build. |
+| `npm run lint` | Runs ESLint checks. |
+| `npm run preview` | Previews the production build. |
 
-## Backend Connection
+## Backend Integration
 
-The frontend communicates with the NexusFlow backend through REST APIs.
+The frontend communicates with the NexusFlow backend through HTTP REST APIs.
 
-Default backend URL:
+The current frontend services use:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-The backend must be running for dashboard data, device management, telemetry, rules, and alerts to work.
+Make sure the backend server and MongoDB connection are running before using the application.
 
-## Project
+## Quality Checks
 
-**NexusFlow – Visual IoT Telemetry & Rule Engine**
+Latest verification:
 
-Frontend developed as part of the Infotact Solutions project.
+- ESLint: Passed with 0 errors and 0 warnings.
+- Production build: Successful.
+
+## Current Limitations
+
+- Complete responsive verification is pending.
+- End-to-end workflow testing is pending.
+- Real-time telemetry streaming is planned for a future release.
+- Telemetry charts and advanced analytics are planned improvements.

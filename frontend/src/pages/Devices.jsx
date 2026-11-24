@@ -32,8 +32,32 @@ function Devices() {
   }
 
   useEffect(() => {
-    fetchDevices()
-  }, [])
+  let cancelled = false;
+
+  const loadDevices = async () => {
+    try {
+      const data = await getDevices();
+
+      if (!cancelled) {
+        setDevices(data);
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setError(err.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setLoading(false);
+      }
+    }
+  };
+
+  loadDevices();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target

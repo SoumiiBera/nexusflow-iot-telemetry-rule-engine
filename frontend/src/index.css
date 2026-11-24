@@ -36,37 +36,6 @@ textarea {
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0 16px;
-  }
-
-  .navbar-right {
-    gap: 10px;
-  }
-
-  .sidebar {
-    width: 75px;
-    padding: 24px 8px;
-  }
-
-  .sidebar-heading,
-  .sidebar-link:not(.active) {
-    font-size: 0;
-  }
-
-  .sidebar-link {
-    justify-content: center;
-    padding: 13px 8px;
-  }
-
-  .sidebar-link span {
-    font-size: 19px;
-  }
-
-  .sidebar-footer {
-    font-size: 0;
-  }
-
   .dashboard-content {
     padding: 22px 16px;
   }

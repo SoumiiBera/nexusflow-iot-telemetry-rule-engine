@@ -1,54 +1,141 @@
-# Soumi Bera – Work Documentation
+# Soumi Bera – Individual Development Documentation
 
-## 1. Team Member Information
+## 1. Developer Information
 
-- **Name:** Soumi Bera
-- **Role:** Team Leader & Core System Developer
-- **Project:** NexusFlow – Visual IoT Telemetry & Rule Engine
-- **Branch:** `soumi-core`
-- **Organization:** Infotact Solutions
+- **Developer:** Soumi Bera
+- **Project:** NexusFlow – IoT Telemetry & Rule Engine
+- **Project Type:** Individual Development Project
+- **Development Branch:** `soumi-core`
+- **Frontend:** React.js, Vite
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas
+- **Organization Context:** Infotact Solutions
 - **Internship Role:** Associate L1 Intern – Web Development
 
 ---
 
-## 2. Role and Responsibilities
+## 2. Project Overview
 
-As the Team Leader and Core System Developer, I am responsible for developing the core system logic, managing backend development, coordinating team activities, and integrating the different modules of NexusFlow.
+NexusFlow is an IoT Telemetry and Rule Engine platform designed to manage IoT devices, process telemetry data, evaluate configurable monitoring rules, and generate alerts automatically.
 
-My major responsibilities include:
+The application provides a dashboard where users can monitor device information, view telemetry history, manage rules, and track alerts.
 
-- Core Rule Engine development.
-- Rule validation and evaluation.
-- Telemetry data validation and processing.
-- Telemetry normalization.
-- Alert Manager development.
-- Main backend API development.
-- MongoDB database integration and model management.
-- Backend and core module integration.
-- Testing and debugging.
-- Code review and team coordination.
-- Project documentation and GitHub management.
+The project is developed using a React-based frontend, Node.js and Express backend, and MongoDB Atlas database.
 
 ---
 
-## 3. Core Rule Engine Development
+## 3. Frontend Development
 
-The Rule Engine evaluates incoming telemetry data against predefined rules and generates alerts when configured conditions are satisfied.
+**Technology:** React.js, JavaScript, CSS3, Vite
 
-### Main Responsibilities
+### Main Responsibilities and Implementation
 
-- Implementing rule evaluation logic.
-- Validating rule configurations.
-- Supporting comparison operators:
+- Developed the main application layout.
+- Implemented the dashboard interface.
+- Developed the device management page.
+- Developed the telemetry page.
+- Developed the rule management page.
+- Developed the alert management page.
+- Created reusable dashboard components.
+- Integrated frontend pages with backend REST APIs.
+- Implemented frontend data loading and error handling.
+- Improved application styling and layout.
+- Fixed frontend lint issues.
+
+### Main Frontend Structure
+
+```text
+frontend/
+└── src/
+    ├── components/
+    │   ├── DashboardCard.jsx
+    │   ├── Navbar.jsx
+    │   └── Sidebar.jsx
+    ├── pages/
+    │   ├── Dashboard.jsx
+    │   ├── Devices.jsx
+    │   ├── Telemetry.jsx
+    │   ├── Rules.jsx
+    │   └── Alerts.jsx
+    ├── services/
+    ├── App.jsx
+    └── main.jsx
+```
+
+---
+
+## 4. Backend Development
+
+**Technology:** Node.js, Express.js
+
+### Main Responsibilities and Implementation
+
+- Developed the Express backend server.
+- Organized backend routes and controllers.
+- Implemented REST API endpoints.
+- Integrated MongoDB Atlas.
+- Developed device management APIs.
+- Developed telemetry APIs.
+- Developed rule management APIs.
+- Developed alert management APIs.
+- Developed dashboard summary API.
+- Implemented request validation and error handling.
+- Integrated telemetry processing with the Rule Engine.
+
+### Backend Components
+
+- Configuration
+- Controllers
+- Models
+- Routes
+- Core processing modules
+- Automated tests
+
+---
+
+## 5. MongoDB Database Integration
+
+**Technology:** MongoDB Atlas, Mongoose
+
+### Main Responsibilities and Implementation
+
+- Configured MongoDB Atlas connectivity.
+- Established database connection using Mongoose.
+- Developed database models.
+- Implemented data storage and retrieval.
+- Managed device information.
+- Stored telemetry records.
+- Stored configured monitoring rules.
+- Maintained generated alert records.
+
+### Main Data Models
+
+- `Device.js`
+- `Telemetry.js`
+- `Rule.js`
+- `Alert.js`
+
+---
+
+## 6. Core Rule Engine Development
+
+The Rule Engine evaluates incoming telemetry data against predefined conditions and generates alerts when configured conditions are satisfied.
+
+### Main Responsibilities and Implementation
+
+- Implemented rule validation.
+- Developed rule evaluation logic.
+- Supported comparison operators:
   - `>`
   - `<`
   - `==`
   - `>=`
   - `<=`
-- Evaluating rules based on device IDs.
-- Handling disabled rules.
-- Handling conditions that do not match.
-- Ensuring consistent rule evaluation results.
+- Evaluated telemetry using configured device and rule information.
+- Handled disabled rules.
+- Checked matching and non-matching conditions.
+- Integrated rule evaluation with telemetry processing.
+- Connected rule evaluation with alert generation.
 
 ### Related Files
 
@@ -60,27 +147,25 @@ core/
     ├── ruleEngine.js
     ├── ruleValidator.js
     └── tests/
-        ├── alertManager.test.js
-        ├── evaluator.test.js
-        ├── ruleEngine.test.js
-        └── ruleValidator.test.js
 ```
 
 ---
 
-## 4. Telemetry Data Processing
+## 7. Telemetry Data Processing
 
-Telemetry Processing validates, normalizes, and processes incoming device data before sending it to the Rule Engine.
+Telemetry Processing validates, normalizes, and processes incoming device data before rule evaluation.
 
-### Main Responsibilities
+### Main Responsibilities and Implementation
 
-- Validating incoming telemetry data.
-- Checking required data fields.
-- Handling invalid telemetry values.
-- Normalizing telemetry data.
-- Maintaining consistency in telemetry records.
-- Preparing validated data for Rule Engine evaluation.
-- Connecting telemetry processing with rule evaluation.
+- Implemented telemetry validation.
+- Checked required telemetry fields.
+- Handled invalid telemetry values.
+- Normalized incoming telemetry data.
+- Processed telemetry records.
+- Stored valid telemetry data.
+- Updated device last-seen information.
+- Prepared processed telemetry for Rule Engine evaluation.
+- Supported telemetry history retrieval.
 
 ### Related Files
 
@@ -91,28 +176,22 @@ core/
     ├── telemetryNormalizer.js
     ├── telemetryProcessor.js
     └── tests/
-        ├── telemetryValidator.test.js
-        ├── telemetryNormalizer.test.js
-        └── telemetryProcessor.test.js
 ```
 
 ---
 
-## 5. Alert Manager Development
+## 8. Alert Manager Development
 
-The Alert Manager handles alerts generated when device telemetry data matches configured rules.
+The Alert Manager handles alerts generated when telemetry data satisfies configured rule conditions.
 
-### Main Responsibilities
+### Main Responsibilities and Implementation
 
-- Generating unique alert IDs using UUID.
-- Supporting Warning and Critical severity levels.
-- Managing alert statuses:
-  - Active
-  - Acknowledged
-  - Resolved
-- Updating alert statuses.
-- Managing alert information consistently.
-- Supporting the alert lifecycle.
+- Generated unique alert identifiers.
+- Supported Warning and Critical severity levels.
+- Managed alert lifecycle information.
+- Supported Active, Acknowledged, and Resolved statuses.
+- Implemented alert status updates.
+- Integrated alert generation with the Rule Engine.
 
 ### Related File
 
@@ -122,131 +201,147 @@ core/rule-engine/alertManager.js
 
 ---
 
-## 6. Backend Development and Integration
+## 9. API Development and Integration
 
-I am responsible for the main backend development and integration of the core system components.
+The backend exposes REST APIs for communication between the frontend and backend services.
 
-### Main Responsibilities
+### Implemented API Endpoints
 
-- Managing the main backend architecture.
-- Working with Node.js and Express.js.
-- Managing MongoDB database connectivity.
-- Designing and managing database models.
-- Developing Device APIs.
-- Developing Telemetry APIs.
-- Developing Rule APIs.
-- Developing Alert APIs.
-- Managing routes and controllers.
-- Implementing request validation and error handling.
-- Integrating the Rule Engine with backend services.
-- Connecting telemetry processing with the backend workflow.
-- Managing communication between system components.
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/health` | Backend health check |
+| GET | `/api/devices` | Retrieve devices |
+| POST | `/api/devices` | Register a device |
+| GET | `/api/devices/:deviceId` | Retrieve a specific device |
+| PUT | `/api/devices/:deviceId` | Update device information |
+| DELETE | `/api/devices/:deviceId` | Delete a device |
+| GET | `/api/telemetry` | Retrieve telemetry history |
+| POST | `/api/telemetry` | Submit telemetry data |
+| GET | `/api/rules` | Retrieve rules |
+| POST | `/api/rules` | Create a rule |
+| GET | `/api/rules/:ruleId` | Retrieve a specific rule |
+| PUT | `/api/rules/:ruleId` | Update a rule |
+| DELETE | `/api/rules/:ruleId` | Delete a rule |
+| GET | `/api/alerts` | Retrieve alerts |
+| PATCH | `/api/alerts/:alertId/status` | Update alert status |
+| GET | `/api/dashboard/summary` | Retrieve dashboard summary |
 
 ---
 
-## 7. Testing and Debugging
+## 10. Testing and Quality Assurance
 
-Testing ensures that the core modules work correctly and produce consistent results.
+Testing is performed to verify the reliability of the backend modules and frontend application.
 
 ### Testing Responsibilities
 
-- Writing and maintaining unit tests.
-- Testing rule validation.
-- Testing rule evaluation.
-- Testing alert generation and status updates.
-- Testing telemetry validation.
-- Testing telemetry normalization.
-- Testing telemetry processing.
-- Identifying and fixing errors.
-- Verifying integration between core modules.
+- Tested rule validation.
+- Tested rule evaluation.
+- Tested alert generation.
+- Tested telemetry validation.
+- Tested telemetry normalization.
+- Tested telemetry processing.
+- Tested backend API functionality.
+- Fixed frontend lint issues.
+- Verified frontend production build.
 
-### Combined Test Command
+### Latest Verified Results
 
-```bash
-node --test core/rule-engine/tests/*.test.js core/telemetry/tests/*.test.js
-```
+| Verification | Result |
+|---|---|
+| Backend Automated Tests | 88 Passed |
+| Failed Backend Tests | 0 |
+| Frontend Lint Errors | 0 |
+| Frontend Lint Warnings | 0 |
+| Production Build | Successful |
 
-### Current Test Results
+**Overall Status:** All 88 backend automated tests are passing. Frontend lint and production build checks are also successful.
 
-- Total Tests: 47
-- Passed: 47
-- Failed: 0
-
-**Status:** All 47 core module tests are passing.
-
----
-
-## 8. Team Leadership and Collaboration
-
-As Team Leader, I coordinate development activities and maintain collaboration between team members.
-
-### Responsibilities
-
-- Assigning tasks to team members.
-- Monitoring development progress.
-- Reviewing submitted code.
-- Managing GitHub branches.
-- Reviewing Pull Requests.
-- Coordinating module integration.
-- Maintaining project documentation.
-- Helping resolve development issues.
-- Ensuring responsibilities remain clearly defined.
+Complete end-to-end testing and full responsive UI verification remain pending.
 
 ---
 
-## 9. GitHub Branch Management
+## 11. GitHub and Version Control
 
-My assigned development branch is:
+**Development Branch:** `soumi-core`
 
-```text
-soumi-core
-```
+### Main Responsibilities
 
-### Branch Responsibilities
-
-- Developing core backend modules.
-- Committing code changes.
-- Pushing updates to GitHub.
-- Reviewing team contributions.
-- Coordinating Pull Requests.
-- Maintaining the stability of the main branch.
+- Managed project development through Git.
+- Maintained source code changes.
+- Organized development commits.
+- Updated project documentation.
+- Maintained the project README.
+- Managed development and verification changes.
+- Reviewed repository structure and GitHub presentation.
 
 ---
 
-## 10. Documentation Responsibilities
+## 12. Project Documentation
 
-I am responsible for maintaining and coordinating the following project documentation:
+The following documentation is maintained as part of the project:
 
 - `README.md`
-- `docs/SOUMI_WORK.md`
-- `docs/SHREYA_WORK.md`
-- `docs/CHANDRA_WORK.md`
-- `TEAM_TASKS.md`
-- `SYSTEM_INTEGRATION_DESIGN.md`
 - `ROADMAP.md`
 - `CONTRIBUTING.md`
+- `INDIVIDUAL_DEVELOPMENT_CHECKLIST.md`
+- `SYSTEM_INTEGRATION_DESIGN.md`
+- `docs/SOUMI_WORK.md`
+- `docs/SYSTEM_ARCHITECTURE.md`
+- `docs/RULE_ENGINE_DESIGN.md`
+- `docs/TELEMETRY_PROCESSING_DESIGN.md`
+- `docs/REAL_TIME_INTEGRATION_DESIGN.md`
+
+Historical team assignment documents are maintained separately in the archive.
 
 ---
 
-## 11. Current Development Focus
+## 13. Current Development Status
 
-My current development focus includes:
-
-1. Maintaining and improving the Core Rule Engine.
-2. Completing and testing Telemetry Processing.
-3. Maintaining Alert Manager functionality.
-4. Developing the main backend APIs.
-5. Integrating MongoDB with backend services.
-6. Connecting core modules with the backend workflow.
-7. Testing the complete telemetry-to-alert workflow.
-8. Reviewing team contributions.
-9. Coordinating frontend and backend integration.
-10. Maintaining project documentation.
+| Development Area | Status |
+|---|---|
+| Frontend Development | Core Implementation Completed |
+| Backend Development | Completed |
+| MongoDB Integration | Completed |
+| Device Management | Core Implementation Completed |
+| Telemetry Processing | Completed |
+| Rule Engine | Completed |
+| Alert Management | Completed |
+| REST API Integration | Completed |
+| Backend Automated Testing | 88 Tests Passed |
+| Frontend Lint | Passed |
+| Production Build | Passed |
+| End-to-End Testing | Pending |
+| Responsive UI Verification | Pending |
+| Documentation | In Progress |
+| Cloud Deployment | Not Started |
 
 ---
 
-## 12. Conclusion
+## 14. Future Development Plans
 
-As the Team Leader and Core System Developer, my contribution focuses on developing and maintaining the core functionality of NexusFlow.
+Planned improvements include:
 
-My goal is to ensure that the Rule Engine, Telemetry Processing, Alert Manager, and backend components work together reliably while maintaining proper code quality, testing, documentation, and team coordination.
+- MQTT-based IoT device communication.
+- Real-time telemetry streaming.
+- Socket.IO-based dashboard updates.
+- Telemetry charts and visual analytics.
+- Notification services.
+- AI-based anomaly detection.
+- Authentication and role-based access control.
+- Advanced monitoring features.
+- Cloud deployment.
+- Complete responsive UI improvements.
+
+These are future enhancements and are not claimed as completed functionality.
+
+---
+
+## 15. Conclusion
+
+NexusFlow demonstrates the development of an IoT monitoring platform with frontend dashboard functionality, backend REST APIs, MongoDB integration, telemetry processing, configurable rule evaluation, and automated alert management.
+
+The development work covers the major application layers, including frontend implementation, backend development, database integration, core processing logic, testing, and technical documentation.
+
+The project provides a foundation for future improvements in real-time communication, analytics, scalability, security, and cloud deployment.
+
+**Developer: Soumi Bera**

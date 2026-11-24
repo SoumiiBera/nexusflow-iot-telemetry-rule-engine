@@ -37,8 +37,32 @@ function Alerts() {
 };
 
   useEffect(() => {
-    fetchAlerts();
-  }, []);
+  let cancelled = false;
+
+  const loadAlerts = async () => {
+    try {
+      const data = await getAlerts();
+
+      if (!cancelled) {
+        setAlerts(data);
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setError(err.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setLoading(false);
+      }
+    }
+  };
+
+  loadAlerts();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   return (
     <main className="alerts-page">

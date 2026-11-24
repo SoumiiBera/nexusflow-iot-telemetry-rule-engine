@@ -63,3 +63,44 @@
   border-radius: 50%;
   font-weight: 700;
 }
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+    padding: 0 12px;
+  }
+
+  .navbar-brand {
+    font-size: 18px;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .navbar-right {
+    gap: 8px;
+  }
+
+  .system-status {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    margin-right: 4px;
+  }
+
+  .profile {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .profile-avatar {
+    width: 30px;
+    height: 30px;
+  }
+}

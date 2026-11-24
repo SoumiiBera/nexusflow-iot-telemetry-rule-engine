@@ -22,9 +22,32 @@ const Telemetry = () => {
   };
 
   useEffect(() => {
-    fetchTelemetry();
-  }, []);
+  let cancelled = false;
 
+  const loadTelemetry = async () => {
+    try {
+      const data = await getTelemetryHistory();
+
+      if (!cancelled) {
+        setRecords(data);
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setError(err.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setLoading(false);
+      }
+    }
+  };
+
+  loadTelemetry();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
   const formatDate = (timestamp) => {
     return new Date(timestamp).toLocaleString();
   };

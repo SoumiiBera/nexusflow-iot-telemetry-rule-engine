@@ -36,8 +36,32 @@ function Rules() {
   };
 
   useEffect(() => {
-    fetchRules();
-  }, []);
+  let cancelled = false;
+
+  const loadRules = async () => {
+    try {
+      const data = await getRules();
+
+      if (!cancelled) {
+        setRules(data);
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setError(err.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setLoading(false);
+      }
+    }
+  };
+
+  loadRules();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
