@@ -1,42 +1,115 @@
 .dashboard-card {
-  background: #ffffff;
-  padding: 24px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  position: relative;
+  min-width: 0;
+  min-height: 151px;
+  padding: 21px 22px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(21, 34, 58, 0.96), rgba(13, 23, 41, 0.96));
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 13px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(103, 232, 249, 0.3);
+  box-shadow: 0 13px 30px rgba(0, 0, 0, 0.18);
 }
 
 .card-top {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .card-title {
-  color: #64748b;
-  font-size: 14px;
-  font-weight: 500;
+  color: #9aabc4;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .card-icon {
-  width: 42px;
-  height: 42px;
+  width: 39px;
+  height: 39px;
   display: grid;
   place-items: center;
-  background: #eff6ff;
-  color: #2563eb;
-  border-radius: 10px;
-  font-size: 20px;
+  border-radius: 11px;
+  font-size: 19px;
 }
 
 .card-value {
-  color: #172554;
+  position: relative;
+  z-index: 1;
+  margin: 17px 0 5px;
+  color: #f1f5ff;
   font-size: 32px;
-  margin: 18px 0 8px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .card-description {
-  color: #94a3b8;
-  font-size: 12px;
+  position: relative;
+  z-index: 1;
   margin: 0;
+  color: #71839f;
+  font-size: 10px;
+}
+
+.card-decoration {
+  position: absolute;
+  right: -33px;
+  bottom: -67px;
+  width: 130px;
+  height: 130px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.08;
+}
+
+.card-cyan {
+  color: #22d3ee;
+}
+
+.card-cyan .card-icon {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.11);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+}
+
+.card-violet {
+  color: #a78bfa;
+}
+
+.card-violet .card-icon {
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.17);
+}
+
+.card-amber {
+  color: #fbbf24;
+}
+
+.card-amber .card-icon {
+  color: #fcd34d;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.16);
+}
+
+@media (max-width: 600px) {
+  .dashboard-card {
+    min-height: 137px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-card {
+    transition: none;
+  }
+
+  .dashboard-card:hover {
+    transform: none;
+  }
 }

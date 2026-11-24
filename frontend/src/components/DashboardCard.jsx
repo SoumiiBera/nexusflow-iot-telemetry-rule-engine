@@ -1,8 +1,8 @@
 import './DashboardCard.css'
 
-function DashboardCard({ title, value, icon, description }) {
+function DashboardCard({ title, value, icon, description, accent = 'cyan' }) {
   return (
-    <div className="dashboard-card">
+    <article className={`dashboard-card card-${accent}`}>
       <div className="card-top">
         <span className="card-title">{title}</span>
         <span className="card-icon">{icon}</span>
@@ -11,7 +11,9 @@ function DashboardCard({ title, value, icon, description }) {
       <h2 className="card-value">{value}</h2>
 
       <p className="card-description">{description}</p>
-    </div>
+
+      <div className="card-decoration" aria-hidden="true"></div>
+    </article>
   )
 }
 
