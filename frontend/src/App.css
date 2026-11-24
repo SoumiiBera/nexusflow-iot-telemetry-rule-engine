@@ -1,18 +1,25 @@
 .app {
   min-height: 100vh;
-  background: #f8fafc;
+  color: #e8efff;
+  background: transparent;
 }
 
 .app-layout {
   display: flex;
-  min-height: calc(100vh - 70px);
+  align-items: stretch;
+  min-height: calc(100vh - 76px);
+  width: 100%;
+}
+
+.app-layout > main {
+  flex: 1;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
   .app-layout {
     flex-direction: column;
-    min-height: calc(100vh - 60px);
-    width: 100%;
+    min-height: calc(100vh - 66px);
   }
 
   .app-layout > * {
