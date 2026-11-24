@@ -2,7 +2,7 @@ import './Sidebar.css'
 
 function Sidebar({ activePage, onNavigate }) {
   const menuItems = [
-    { id: 'Dashboard', label: 'Dashboard', icon: '▦' },
+    { id: 'Dashboard', label: 'Dashboard', icon: '◫' },
     { id: 'Devices', label: 'Devices', icon: '▣' },
     { id: 'Telemetry', label: 'Telemetry', icon: '⌁' },
     { id: 'Rules', label: 'Rules', icon: '⚙' },
@@ -11,31 +11,40 @@ function Sidebar({ activePage, onNavigate }) {
 
   return (
     <aside className="sidebar">
-      <p className="sidebar-heading">MAIN MENU</p>
+      <div className="sidebar-section">
+        <p className="sidebar-heading">WORKSPACE</p>
 
-      <nav className="sidebar-nav">
-        {menuItems.map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id.toLowerCase()}`}
-            className={`sidebar-link ${activePage === item.id ? 'active' : ''}`}
-            onClick={(event) => {
-              event.preventDefault()
-
-              if (['Dashboard', 'Devices', 'Telemetry', 'Rules', 'Alerts'].includes(item.id)) {
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id.toLowerCase()}`}
+              className={`sidebar-link ${activePage === item.id ? 'active' : ''}`}
+              aria-current={activePage === item.id ? 'page' : undefined}
+              onClick={(event) => {
+                event.preventDefault()
                 onNavigate(item.id)
-              }
-            }}
-          >
-            <span>{item.icon}</span>
-            {item.label}
-          </a>
-        ))}
-      </nav>
+              }}
+            >
+              <span className="sidebar-icon">{item.icon}</span>
+              <span className="sidebar-label">{item.label}</span>
+              {activePage === item.id && (
+                <span className="active-indicator"></span>
+              )}
+            </a>
+          ))}
+        </nav>
+      </div>
 
-      <div className="sidebar-footer">
-        <span className="footer-indicator"></span>
-        NexusFlow v1.0
+      <div className="sidebar-bottom">
+        <div className="sidebar-system-card">
+          <div className="sidebar-system-top">
+            <span className="footer-indicator"></span>
+            <span>System Operational</span>
+          </div>
+          <p>Monitoring your IoT ecosystem</p>
+          <span className="sidebar-version">NEXUSFLOW · V1.0</span>
+        </div>
       </div>
     </aside>
   )
