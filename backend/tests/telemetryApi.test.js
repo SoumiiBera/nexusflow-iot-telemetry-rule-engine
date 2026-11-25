@@ -16,8 +16,18 @@ const Device = require("../models/Device");
 // Connect to MongoDB before running tests
 before(async () => {
     await connectDB();
-});
 
+    await Device.findOneAndUpdate(
+        { deviceId: "TEST_DEVICE_001" },
+        {
+            $set: {
+                name: "Telemetry Test Device",
+                status: "Active"
+            }
+        },
+        { upsert: true }
+    );
+});
 // Cleanup after all tests
 after(async () => {
     await Telemetry.deleteMany({
@@ -44,7 +54,6 @@ await Rule.deleteMany({
 
 await mongoose.disconnect();
 });
-
 // Test 1: Valid telemetry
 test("Should process valid telemetry successfully", async () => {
     const response = await request(app)
@@ -139,7 +148,7 @@ test("Should reject invalid telemetry", async () => {
 test("Should generate alerts when database rules are triggered", async () => {
 
     // Create rules in MongoDB
-    await Rule.create([
+           await Rule.create([
         {
             ruleId: "RULE_001",
             ruleName: "High Temperature",
@@ -205,6 +214,11 @@ assert.deepStrictEqual(
 test("Should return empty alerts when no rules are triggered", async () => {
 
     // Create a rule in MongoDB
+    await Device.create({
+        deviceId: "TEST_DEVICE_002",
+        name: "No Alert Test Device"
+    });
+
     await Rule.create({
         ruleId: "RULE_003",
         ruleName: "High Temperature",
@@ -237,6 +251,11 @@ test("Should return empty alerts when no rules are triggered", async () => {
 test("Should not generate alerts from disabled database rules", async () => {
 
     // Create a disabled rule in MongoDB
+    await Device.create({
+        deviceId: "TEST_DEVICE_003",
+        name: "Disabled Rule Test Device"
+    });
+
     await Rule.create({
         ruleId: "RULE_004",
         ruleName: "Disabled Temperature Alert",
@@ -288,4 +307,56 @@ test("Should filter telemetry history by device ID", async () => {
             record => record.deviceId === "TEST_DEVICE_001"
         )
     );
+});
+
+// Test 9: Reject telemetry from an unregistered device
+test("Should reject telemetry from an unregistered device", async () => {
+    const deviceId = "TEST_DEVICE_UNKNOWN_001";
+
+    const response = await request(app)
+        .post("/api/telemetry")
+        .send({
+            deviceId,
+            temperature: 45,
+            humidity: 60
+        });
+
+    assert.strictEqual(response.status, 404);
+    assert.strictEqual(response.body.success, false);
+    assert.strictEqual(
+        response.body.message,
+        "Device is not registered."
+    );
+
+    const savedTelemetry = await Telemetry.findOne({ deviceId });
+    assert.strictEqual(savedTelemetry, null);
+});
+
+// Test 10: Reject telemetry from an inactive device
+test("Should reject telemetry from an inactive device", async () => {
+    const deviceId = "TEST_DEVICE_INACTIVE_001";
+
+    await Device.create({
+        deviceId,
+        name: "Inactive Test Device",
+        status: "Inactive"
+    });
+
+    const response = await request(app)
+        .post("/api/telemetry")
+        .send({
+            deviceId,
+            temperature: 45,
+            humidity: 60
+        });
+
+    assert.strictEqual(response.status, 409);
+    assert.strictEqual(response.body.success, false);
+    assert.strictEqual(
+        response.body.message,
+        "Telemetry cannot be accepted from an inactive device."
+    );
+
+    const savedTelemetry = await Telemetry.findOne({ deviceId });
+    assert.strictEqual(savedTelemetry, null);
 });
