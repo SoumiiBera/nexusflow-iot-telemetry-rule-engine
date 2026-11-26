@@ -576,3 +576,457 @@
     transition: none;
   }
 }
+
+/* =========================================
+   DASHBOARD INTERACTION & DATA COMPONENTS
+========================================= */
+
+/* Header actions */
+
+.dashboard-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dashboard-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 10px 16px;
+  color: #a5f3fc;
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.18), rgba(99, 102, 241, 0.14));
+  border: 1px solid rgba(34, 211, 238, 0.24);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-refresh-button:hover:not(:disabled) {
+  background: rgba(34, 211, 238, 0.16);
+  border-color: rgba(34, 211, 238, 0.55);
+  transform: translateY(-1px);
+}
+
+.dashboard-refresh-button:focus-visible,
+.dashboard-error button:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+.dashboard-refresh-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.dashboard-refresh-button > span {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.refresh-spinning {
+  display: inline-block;
+  animation: refresh-spin 0.8s linear infinite;
+}
+
+@keyframes refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Last updated */
+
+.dashboard-update-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: -8px 0 22px;
+  color: #8293ae;
+  font-size: 11px;
+}
+
+.update-indicator {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  background: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 9px rgba(52, 211, 153, 0.55);
+}
+
+/* Error message */
+
+.dashboard-error {
+  align-items: center;
+}
+
+.dashboard-error > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-error p {
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+.dashboard-error button {
+  padding: 8px 13px;
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* Recently seen */
+
+.recently-seen-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 12px 13px;
+  color: #9aabc4;
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 9px;
+  font-size: 11px;
+}
+
+.recently-seen-row strong {
+  color: #e8efff;
+  font-size: 14px;
+}
+
+/* Alert breakdown */
+
+.alert-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.alert-breakdown > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 10px 11px;
+  color: #a6bad2;
+  background: rgba(30, 41, 59, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.09);
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.alert-breakdown strong {
+  margin-left: auto;
+  color: #f1f5ff;
+  font-size: 13px;
+}
+
+.alert-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+}
+
+.critical-dot {
+  background: #fb7185;
+  box-shadow: 0 0 8px rgba(251, 113, 133, 0.45);
+}
+
+.warning-dot {
+  background: #fbbf24;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+}
+
+.resolved-dot {
+  background: #34d399;
+}
+
+.acknowledged-dot {
+  background: #a78bfa;
+}
+
+/* Telemetry overview */
+
+.telemetry-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.telemetry-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 145px;
+  padding: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.telemetry-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+.telemetry-stat-label {
+  color: #8298b7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.telemetry-stat > strong {
+  margin: 13px 0 7px;
+  color: #f1f5ff;
+  font-size: clamp(23px, 2.4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.telemetry-stat-caption {
+  color: #8192ad;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Recent activity */
+
+.activity-panel {
+  margin-top: 26px;
+  padding: 25px;
+}
+
+.activity-panel > .panel-heading {
+  margin-bottom: 20px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.activity-item:first-child {
+  padding-top: 5px;
+}
+
+.activity-item:last-child {
+  padding-bottom: 4px;
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.09);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.activity-alert {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.16);
+}
+
+.activity-telemetry {
+  color: #a5b4fc;
+  background: rgba(129, 140, 248, 0.1);
+  border-color: rgba(129, 140, 248, 0.18);
+}
+
+.activity-details {
+  min-width: 0;
+}
+
+.activity-details > strong {
+  display: block;
+  margin: 1px 0 7px;
+  color: #e8efff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.activity-details > p {
+  margin: 0 0 9px;
+  color: #9aabc4;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.activity-device {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  color: #8da6c7;
+  background: rgba(30, 41, 59, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 5px;
+  font-size: 9px;
+}
+
+.activity-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.activity-meta time {
+  color: #7286a3;
+  font-size: 10px;
+}
+
+.activity-severity {
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.severity-warning {
+  color: #fcd34d;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+}
+
+.severity-critical {
+  color: #fda4af;
+  background: rgba(251, 113, 133, 0.1);
+  border: 1px solid rgba(251, 113, 133, 0.18);
+}
+
+.activity-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  text-align: center;
+  color: #8192ad;
+}
+
+.activity-empty > span {
+  margin-bottom: 12px;
+  color: #67e8f9;
+  font-size: 27px;
+}
+
+.activity-empty strong {
+  color: #dceaff;
+  font-size: 13px;
+}
+
+.activity-empty p {
+  margin: 7px 0 0;
+  font-size: 11px;
+}
+
+/* Responsive dashboard components */
+
+@media (max-width: 1100px) {
+  .telemetry-overview-grid {
+    gap: 12px;
+  }
+
+  .telemetry-stat {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 850px) {
+  .telemetry-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .activity-item {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .activity-meta {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dashboard-update-info {
+    margin-top: 0;
+    font-size: 10px;
+  }
+
+  .alert-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetry-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetry-stat {
+    min-height: 125px;
+  }
+
+  .activity-panel {
+    padding: 19px;
+  }
+
+  .activity-item {
+    gap: 11px;
+    padding: 15px 0;
+  }
+
+  .activity-meta time {
+    white-space: normal;
+  }
+
+  .dashboard-error {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .refresh-spinning {
+    animation: none;
+  }
+
+  .telemetry-stat,
+  .dashboard-refresh-button {
+    transition: none;
+  }
+}
