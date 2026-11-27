@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
-import Devices from "./pages/Devices";
-import Telemetry from "./pages/Telemetry";
 import "./App.css";
-import Rules from "./pages/Rules";
-import Alerts from "./pages/Alerts";
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Devices = lazy(() => import("./pages/Devices"));
+const Telemetry = lazy(() => import("./pages/Telemetry"));
+const Rules = lazy(() => import("./pages/Rules"));
+const Alerts = lazy(() => import("./pages/Alerts"));
 
 function App() {
   const [activePage, setActivePage] = useState("Dashboard");
@@ -26,7 +27,7 @@ function App() {
         return <Rules />;
 
       case "Alerts":
-        return <Alerts />;  
+        return <Alerts />;
 
       default:
         return <Dashboard />;
@@ -43,7 +44,9 @@ function App() {
           onNavigate={setActivePage}
         />
 
-        {renderPage()}
+        <Suspense fallback={<div className="page-loading">Loading page...</div>}>
+          {renderPage()}
+        </Suspense>
       </div>
     </div>
   );
